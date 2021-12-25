@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/terms"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/terms" />
+
+
+
+    <item
+        android:id="@+id/languages"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/languages" />
+
+    <item
+        android:id="@+id/profession"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/profession" />
+
+
+    <item
+        android:id="@+id/trends"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/trends" />
+
+</menu>

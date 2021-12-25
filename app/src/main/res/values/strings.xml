@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IT_English</string>
+
+
+    <string name="terms">Terms</string>
+    <string name="languages">Languages</string>
+    <string name="profession">Profession</string>
+    <string name="trends">Trends</string>
+</resources>
