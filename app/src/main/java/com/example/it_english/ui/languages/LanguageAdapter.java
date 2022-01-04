@@ -1,4 +1,4 @@
-package com.example.it_english.ui.terms;
+package com.example.it_english.ui.languages;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,58 +6,58 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.it_english.R;
+import com.example.it_english.ui.terms.Term;
+import com.example.it_english.ui.terms.TermAdapter;
 
 import java.util.List;
 
-public class TermAdapter  extends RecyclerView.Adapter<TermAdapter.ViewHolder>{
+public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHolder>{
 
-    public interface OnTermClickListener{
-
-        void onTermClick(Term term, int position);
+    public interface OnLanguageClickListener{
+        void onLanguageClick(Language language, int position);
     }
 
-    private final OnTermClickListener onClickListener;
+    private final LanguageAdapter.OnLanguageClickListener onClickListener;
 
 
     private final LayoutInflater inflater;
-    private final List<Term> terms;
+    private final List<Language> languages;
 
-    TermAdapter(Context context, List<Term> terms, OnTermClickListener onClickListener) {
+    LanguageAdapter(Context context, List<Language> languages, LanguageAdapter.OnLanguageClickListener onClickListener) {
         this.onClickListener = onClickListener;
-        this.terms = terms;
+        this.languages = languages;
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public TermAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LanguageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.template, parent, false);
-        return new ViewHolder(view);
+        return new LanguageAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(TermAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Term term = terms.get(position);
+    public void onBindViewHolder(LanguageAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Language language = languages.get(position);
 
-        holder.Name.setText(term.getName());
-        holder.Icon.setImageResource(term.getIcon());
+        holder.Name.setText(language.getName());
+        holder.Icon.setImageResource(language.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickListener.onTermClick(term, position);
+                onClickListener.onLanguageClick(language, position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return terms.size();
+        return languages.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

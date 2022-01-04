@@ -6,39 +6,58 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.it_english.R;
 import com.example.it_english.databinding.FragmentLanguagesBinding;
+import com.example.it_english.databinding.FragmentTermsBinding;
+import com.example.it_english.ui.terms.Term;
+import com.example.it_english.ui.terms.TermAdapter;
 import com.example.it_english.ui.terms.TermsViewModel;
 
+import java.util.ArrayList;
+
 public class LanguagesFragment  extends Fragment {
-    private LanguagesViewModel languagesViewModel;
-    private FragmentLanguagesBinding binding;
+    private FragmentTermsBinding binding;
+    ArrayList<Language> Languages = new ArrayList<Language>();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        languagesViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LanguagesViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_languages, container, false);
 
-        binding = FragmentLanguagesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        setInitialData();
 
-        final TextView textView = binding.textLanguages;
-        languagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.List);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        LanguageAdapter.OnLanguageClickListener languageClickListener = new LanguageAdapter.OnLanguageClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onLanguageClick(Language language, int position) {
+                Toast.makeText(getActivity(), "Был выбран пункт " + language.getName(),
+                        Toast.LENGTH_SHORT).show();
             }
-        });
-        return root;
+
+        };
+
+        LanguageAdapter LanguageAdapter = new LanguageAdapter(getActivity(), Languages, languageClickListener);
+
+        recyclerView.setAdapter(LanguageAdapter);
+
+        return view;
+
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void setInitialData(){
+        for (int i=0; i < 20; i++)
+            Languages.add(new Language(1, "Язык программирования", "Язык программирования", R.drawable.ic_home_black_24dp));
     }
+
 }
