@@ -6,40 +6,61 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.it_english.R;
 import com.example.it_english.databinding.FragmentTermsBinding;
 import com.example.it_english.databinding.FragmentTrendsBinding;
+import com.example.it_english.ui.terms.Term;
+import com.example.it_english.ui.terms.TermAdapter;
 import com.example.it_english.ui.terms.TermsViewModel;
 
+import java.util.ArrayList;
+
 public class TrendsFragment extends Fragment {
-    private TrendsViewModel trendsViewModel;
+
     private FragmentTrendsBinding binding;
+    ArrayList<Trend> Trends = new ArrayList<Trend>();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        trendsViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TrendsViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_trends, container, false);
 
-        binding = FragmentTrendsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        setInitialData();
 
-        final TextView textView = binding.textTrends;
-        trendsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.List);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        TrendAdapter.OnTrendClickListener termClickListener = new TrendAdapter.OnTrendClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onTrendClick(Trend trend, int position) {
+
+                Toast.makeText(getActivity(), "Был выбран пункт " + trend.getName(),
+                        Toast.LENGTH_SHORT).show();
             }
-        });
-        return root;
+
+        };
+
+        TrendAdapter TrendAdapter = new TrendAdapter(getActivity(), Trends, termClickListener);
+
+        recyclerView.setAdapter(TrendAdapter);
+
+        return view;
+
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void setInitialData(){
+        for (int i=0; i < 20; i++)
+            Trends.add(new Trend(1, "Тренд", "Тренд", R.drawable.ic_dashboard_black_24dp));
     }
+
+
 }
