@@ -55,7 +55,7 @@ public class TermsFragment extends Fragment {
 
     private void setInitialData(){
         for (int i=0; i < 20; i++)
-        Terms.add(new Term(1, "Программист", "Программист", R.drawable.ic_dashboard_black_24dp));
+            Terms.add(new Term(1, "Программист", "Программист", R.drawable.ic_dashboard_black_24dp));
     }
 
 
