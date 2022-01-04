@@ -25,6 +25,7 @@ public class TermsFragment extends Fragment {
     private FragmentTermsBinding binding;
     ArrayList<Term> Terms = new ArrayList<Term>();
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_terms, container, false);
