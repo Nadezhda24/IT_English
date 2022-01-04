@@ -5,25 +5,25 @@
 
     <item
         android:id="@+id/terms"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/term"
         android:title="@string/terms" />
 
 
 
     <item
         android:id="@+id/languages"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/language"
         android:title="@string/languages" />
 
     <item
         android:id="@+id/profession"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/profession"
         android:title="@string/profession" />
 
 
     <item
         android:id="@+id/trends"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/trend"
         android:title="@string/trends" />
 
 </menu>
