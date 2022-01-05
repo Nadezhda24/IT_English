@@ -19,26 +19,54 @@ public class HttpHandler {
     }
 
     public String makeServiceCall(String reqUrl) {
-        String response = null;
+        URL url;
+        HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL(reqUrl);
+            url = new URL(reqUrl);
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            response = convertStreamToString(in);
+            urlConnection = (HttpURLConnection) url
+                    .openConnection();
+                urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
+            urlConnection.connect();
 
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "MalformedURLException: " + e.getMessage());
-        } catch (ProtocolException e) {
-            Log.e(TAG, "ProtocolException: " + e.getMessage());
-        } catch (IOException e) {
-            Log.e(TAG, "IOException: " + e.getMessage());
+            InputStream in = urlConnection.getInputStream();
+
+            InputStreamReader isw = new InputStreamReader(in);
+
+            int data = isw.read();
+            while (data != -1) {
+                char current = (char) data;
+                data = isw.read();
+                System.out.print(current);
+            }
         } catch (Exception e) {
-            Log.e(TAG, "Exception: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
-        return response;
+        return null;
+//        String response = null;
+//        try {
+//            URL url = new URL(reqUrl);
+//
+//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setRequestMethod("GET");
+//            // read the response
+//            InputStream in = new BufferedInputStream(conn.getInputStream());
+//            response = convertStreamToString(in);
+//
+//        } catch (MalformedURLException e) {
+//            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+//        } catch (ProtocolException e) {
+//            Log.e(TAG, "ProtocolException: " + e.getMessage());
+//        } catch (IOException e) {
+//            Log.e(TAG, "IOException: " + e.getMessage());
+//        } catch (Exception e) {
+//            Log.e(TAG, "Exception: " + e.getMessage());
+//        }
+//        return response;
     }
 
     private String convertStreamToString(InputStream is) {
