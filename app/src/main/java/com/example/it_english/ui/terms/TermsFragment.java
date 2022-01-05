@@ -36,7 +36,7 @@ public class TermsFragment extends Fragment {
 
     private FragmentTermsBinding binding;
     ArrayList<Term> Terms = new ArrayList<Term>();
-    String jsonStr = null;
+    String jsonRes = null;
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_terms";
 
 
@@ -67,9 +67,10 @@ public class TermsFragment extends Fragment {
 
     }
 
+
     private void setInitialData(){
         new GetData().execute();
-       Terms.add(new Term(1, jsonStr, "Программист", R.drawable.ic_dashboard_black_24dp));
+      //  Terms.add(new Term(1, jsonRes, "Программист", R.drawable.ic_dashboard_black_24dp));
 
     }
 
@@ -79,6 +80,8 @@ public class TermsFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
             String jsonStr = sh.makeServiceCall(url);
+            jsonRes = jsonStr;
+            Terms.add(new Term(1, jsonRes, "Программист", R.drawable.ic_dashboard_black_24dp));
             return null;
         }
     }
