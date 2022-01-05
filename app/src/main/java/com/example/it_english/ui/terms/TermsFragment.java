@@ -1,36 +1,23 @@
 package com.example.it_english.ui.terms;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.content.Intent;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.it_english.HttpHandler;
 import com.example.it_english.R;
 import com.example.it_english.databinding.FragmentTermsBinding;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.net.ssl.HttpsURLConnection;
 
 public class TermsFragment extends Fragment {
 
@@ -38,6 +25,7 @@ public class TermsFragment extends Fragment {
     ArrayList<Term> Terms = new ArrayList<Term>();
     String jsonRes = null;
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_terms";
+    RecyclerView.Adapter TermAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,7 +47,7 @@ public class TermsFragment extends Fragment {
             }
         };
 
-        TermAdapter TermAdapter = new TermAdapter(getActivity(), Terms, termClickListener);
+        TermAdapter = new TermAdapter(getActivity(), Terms, termClickListener);
 
         recyclerView.setAdapter(TermAdapter);
 
@@ -69,20 +57,31 @@ public class TermsFragment extends Fragment {
 
 
     private void setInitialData(){
-        new GetData().execute();
-      //  Terms.add(new Term(1, jsonRes, "Программист", R.drawable.ic_dashboard_black_24dp));
-
+        try {
+            new GetData().execute().get();
+        } catch (Exception e) { //TODO: сделать нормальное решение для catch
+            Terms.add(new Term(1, "Проверьте интернет и еще раз зайдите в раздел", "", R.drawable.ic_dashboard_black_24dp));
+        }
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
             String jsonStr = sh.makeServiceCall(url);
             jsonRes = jsonStr;
-            Terms.add(new Term(1, jsonRes, "Программист", R.drawable.ic_dashboard_black_24dp));
             return null;
+        }
+        //выполняется после doInBackground
+        @Override
+        protected void onPostExecute(Void v) {
+            Terms.add(new Term(1, jsonRes, "Программист", R.drawable.ic_dashboard_black_24dp));
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                   TermAdapter.notifyDataSetChanged();
+                }
+            });
         }
     }
 
