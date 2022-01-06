@@ -6,6 +6,13 @@ public class Term {
     private String  description;
     private int icon;
 
+    public Term(){
+        this.id = -1;
+        this.name = "";
+        this.description = "";
+        this.icon = -1;
+    }
+
     public Term(int id, String name, String  description, int icon ){
         this.id = id;
         this.name = name;

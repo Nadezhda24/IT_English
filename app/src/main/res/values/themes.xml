@@ -9,4 +9,10 @@
 
 
     </style>
+    <style name="Theme.IT_English.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.IT_English.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.IT_English.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

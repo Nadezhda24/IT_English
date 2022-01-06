@@ -1,6 +1,11 @@
 package com.example.it_english.ui.terms;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 
@@ -48,8 +56,14 @@ public class TermsFragment extends Fragment {
             @Override
             public void onTermClick(Term term, int position) {
 
-                Toast.makeText(getActivity(), "Был выбран пункт " + term.getName(),
-                        Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(),TermActivity.class);
+
+                intent.putExtra("id", term.getId());
+                intent.putExtra("name", term.getName());
+                intent.putExtra("description", term.getDescription());
+                intent.putExtra("icon", term.getIcon());
+
+                startActivity(intent);
             }
         };
 
@@ -83,7 +97,7 @@ public class TermsFragment extends Fragment {
         @Override
         protected void onPostExecute(Void v) {
             try {
-                JSONObject json = new JSONObject("{\"terms\": [{\"id\":\"2\",\"title\":\"term 2\",\"description\":\"Some description 2\",\"img\":null},{\"id\":\"3\",\"title\":\"term 3\",\"description\":\"Some description 3\",\"img\":null},{\"id\":\"4\",\"title\":\"term 5\",\"description\":\"desc 5\",\"img\":null},{\"id\":\"5\",\"title\":\"term 6\",\"description\":\"desc 6\",\"img\":\"terms_img_term_6.gif\"},{\"id\":\"6\",\"title\":\"term 7\",\"description\":\"desc 7\",\"img\":\"terms_img_term_7.gif\"}]}");
+                JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
                 JSONArray arr = json.getJSONArray("terms");
                 for (int i=0; i < arr.length(); i++ ){
                     JSONObject obj = arr.getJSONObject(i);
@@ -91,12 +105,11 @@ public class TermsFragment extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-
-                    Terms.add(new Term(id, name, description, R.drawable.ic_dashboard_black_24dp));
+                    //Drawable drawable = new BitmapDrawable(getResources(), getBitmapFromURL("http://q90932z7.beget.tech/img/terms_img_term_6.jpg"));
+                    Terms.add(new Term(id, name, description, R.drawable.warning));
 
                 }
             } catch (JSONException e) {
-                Terms.add(new Term(1, "1", "2", R.drawable.ic_dashboard_black_24dp));
                  e.printStackTrace();
             }
 
@@ -107,6 +120,22 @@ public class TermsFragment extends Fragment {
                    TermAdapter.notifyDataSetChanged();
                 }
             });
+        }
+    }
+
+    public Bitmap getBitmapFromURL(String src) {
+        try {
+            java.net.URL url = new java.net.URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
