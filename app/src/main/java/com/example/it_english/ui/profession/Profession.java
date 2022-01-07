@@ -1,10 +1,13 @@
 package com.example.it_english.ui.profession;
 
+import android.graphics.Bitmap;
+
 public class Profession {
     private int id;
     private String name;
     private String  description;
-    private String icon;
+    private Bitmap icon;
+    private String iconPath;
 
     public Profession(){
         this.id = -1;
@@ -12,11 +15,13 @@ public class Profession {
         this.description = "";
     }
 
-    public Profession(int id, String name, String  description, String icon ){
+
+    public Profession(int id, String name, String  description, Bitmap icon, String iconPath){
         this.id = id;
         this.name = name;
         this.description = description;
         this.icon = icon;
+        this.iconPath = iconPath;
     }
 
     public int getId(){
@@ -31,7 +36,11 @@ public class Profession {
         return this.description;
     }
 
-    public String getIcon(){
+    public String getIconPath(){
+        return this.iconPath;
+    }
+
+    public Bitmap getIcon(){
         return this.icon;
     }
 
@@ -47,7 +56,11 @@ public class Profession {
         this.description = description;
     }
 
-    public void setIcon(String icon){
+    public void setIconPath(String  iconPath){
+        this.iconPath = iconPath;
+    }
+
+    public void setIcon(Bitmap icon){
         this.icon = icon;
     }
 

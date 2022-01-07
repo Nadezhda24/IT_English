@@ -59,7 +59,7 @@ public class ProfessionFragment extends Fragment {
                 intent.putExtra("id", profession.getId());
                 intent.putExtra("name", profession.getName());
                 intent.putExtra("description", profession.getDescription());
-                intent.putExtra("icon", profession.getIcon());
+                intent.putExtra("icon", profession.getIconPath());
 
                 startActivity(intent);
             }
@@ -84,6 +84,9 @@ public class ProfessionFragment extends Fragment {
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
+
+        HttpHandler sh = new HttpHandler();
+
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
@@ -103,7 +106,7 @@ public class ProfessionFragment extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    Professions.add(new Profession(id, name, description, img));
+                    Professions.add(new Profession(id, name, description,  sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {

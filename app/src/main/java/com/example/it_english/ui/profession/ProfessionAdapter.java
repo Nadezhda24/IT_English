@@ -47,10 +47,7 @@ public class ProfessionAdapter extends RecyclerView.Adapter<ProfessionAdapter.Vi
         Profession profession = professions.get(position);
 
         holder.Name.setText(profession.getName());
-        Picasso.with(inflater.getContext())
-                .load(profession.getIcon())
-                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
-                .into(holder.Icon);
+        holder.Icon.setImageBitmap(profession.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
