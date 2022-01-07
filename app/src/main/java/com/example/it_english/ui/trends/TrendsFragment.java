@@ -59,7 +59,7 @@ public class TrendsFragment extends Fragment {
                 intent.putExtra("id", trend.getId());
                 intent.putExtra("name", trend.getName());
                 intent.putExtra("description", trend.getDescription());
-                intent.putExtra("icon", trend.getIcon());
+                intent.putExtra("icon", trend.getIconPath());
 
                 startActivity(intent);
 
@@ -85,6 +85,9 @@ public class TrendsFragment extends Fragment {
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
+
+        HttpHandler sh = new HttpHandler();
+
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
@@ -104,8 +107,8 @@ public class TrendsFragment extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    //Drawable drawable = new BitmapDrawable(getResources(), );
-                    Trends.add(new Trend(id, name, description, img));
+
+                    Trends.add(new Trend(id, name, description, sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {

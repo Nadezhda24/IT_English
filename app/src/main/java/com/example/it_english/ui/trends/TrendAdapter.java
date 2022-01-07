@@ -47,11 +47,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder>{
         Trend trend = trends.get(position);
 
         holder.Name.setText(trend.getName());
-
-        Picasso.with(inflater.getContext())
-                .load(trend.getIcon())
-                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
-                .into(holder.Icon);
+        holder.Icon.setImageBitmap(trend.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
