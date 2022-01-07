@@ -60,7 +60,7 @@ public class LanguagesFragment  extends Fragment {
                 intent.putExtra("id", language.getId());
                 intent.putExtra("name", language.getName());
                 intent.putExtra("description", language.getDescription());
-                intent.putExtra("icon", language.getIcon());
+                intent.putExtra("icon", language.getIconPath());
 
                 startActivity(intent);
             }
@@ -85,6 +85,9 @@ public class LanguagesFragment  extends Fragment {
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
+
+        HttpHandler sh = new HttpHandler();
+
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
@@ -104,7 +107,7 @@ public class LanguagesFragment  extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    Languages.add(new Language(id, name, description, img));
+                    Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {
