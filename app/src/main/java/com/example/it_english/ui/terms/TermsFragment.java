@@ -105,7 +105,31 @@ public class TermsFragment extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                     Terms.add(new Term(id, name, description, img));
+
+                    Thread thread = new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                java.net.URL url = new java.net.URL(img);
+                                HttpURLConnection connection = (HttpURLConnection) url
+                                        .openConnection();
+                                connection.setDoInput(true);
+                                connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
+                                connection.connect();
+                                InputStream input = connection.getInputStream();
+                                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+
+                                Terms.add(new Term(id, name, description, myBitmap));
+                            }
+                            catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    thread.start();
+                    try {
+                        thread.join();
+                    } catch (Exception e) {}
+
 
                 }
             } catch (JSONException e) {
@@ -121,23 +145,6 @@ public class TermsFragment extends Fragment {
             });
         }
     }
-
-    public Bitmap getBitmapFromURL(String src) {
-        try {
-            java.net.URL url = new java.net.URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 }
 
 

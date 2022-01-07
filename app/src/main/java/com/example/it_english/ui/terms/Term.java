@@ -1,10 +1,12 @@
 package com.example.it_english.ui.terms;
 
+import android.graphics.Bitmap;
+
 public class Term {
     private int id;
     private String name;
     private String  description;
-    private String icon;
+    private Bitmap icon;
 
     public Term(){
         this.id = -1;
@@ -12,7 +14,7 @@ public class Term {
         this.description = "";
     }
 
-    public Term(int id, String name, String  description, String icon ){
+    public Term(int id, String name, String  description, Bitmap icon ){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -31,7 +33,7 @@ public class Term {
         return this.description;
     }
 
-    public String getIcon(){
+    public Bitmap getIcon(){
         return this.icon;
     }
 
@@ -47,7 +49,7 @@ public class Term {
         this.description = description;
     }
 
-    public void setIcon(String icon){
+    public void setIcon(Bitmap icon){
         this.icon = icon;
     }
 

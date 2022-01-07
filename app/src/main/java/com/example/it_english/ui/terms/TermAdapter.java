@@ -46,11 +46,11 @@ public class TermAdapter  extends RecyclerView.Adapter<TermAdapter.ViewHolder>{
         Term term = terms.get(position);
 
         holder.Name.setText(term.getName());
-        Picasso.with(inflater.getContext())
+        /*Picasso.with(inflater.getContext())
                 .load(term.getIcon())
                 .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
-                .into(holder.Icon);
-
+                .into(holder.Icon);*/
+        holder.Icon.setImageBitmap(term.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
