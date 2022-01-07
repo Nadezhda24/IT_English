@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/terms"
-        android:name="com.example.it_english.ui.terms.TermsFragment"
+        android:name="com.ntdvv.it_english.ui.terms.TermsFragment"
         android:label="@string/terms"
         tools:layout="@layout/fragment_terms" />
     <fragment
         android:id="@+id/languages"
-        android:name="com.example.it_english.ui.languages.LanguagesFragment"
+        android:name="com.ntdvv.it_english.ui.languages.LanguagesFragment"
         android:label="@string/languages"
         tools:layout="@layout/fragment_languages" />
 
     <fragment
         android:id="@+id/profession"
-        android:name="com.example.it_english.ui.profession.ProfessionFragment"
+        android:name="com.ntdvv.it_english.ui.profession.ProfessionFragment"
         android:label="@string/profession"
         tools:layout="@layout/fragment_profession"/>
 
     <fragment
         android:id="@+id/trends"
-        android:name="com.example.it_english.ui.trends.TrendsFragment"
+        android:name="com.ntdvv.it_english.ui.trends.TrendsFragment"
         android:label="@string/trends"
         tools:layout="@layout/fragment_trends"/>
 

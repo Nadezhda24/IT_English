@@ -1,26 +1,27 @@
-package com.example.it_english.ui.terms;
+package com.ntdvv.it_english.ui.profession;
 
 import android.graphics.Bitmap;
 
-public class Term {
+public class Profession {
     private int id;
     private String name;
     private String  description;
     private Bitmap icon;
     private String iconPath;
 
-    public Term(){
+    public Profession(){
         this.id = -1;
         this.name = "";
         this.description = "";
     }
 
-    public Term(int id, String name, String  description, Bitmap icon, String iconPath ){
+
+    public Profession(int id, String name, String  description, Bitmap icon, String iconPath){
         this.id = id;
         this.name = name;
         this.description = description;
-        this.iconPath = iconPath;
         this.icon = icon;
+        this.iconPath = iconPath;
     }
 
     public int getId(){

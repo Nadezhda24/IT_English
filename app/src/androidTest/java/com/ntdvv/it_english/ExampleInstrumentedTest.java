@@ -1,4 +1,4 @@
-package com.example.it_english;
+package com.ntdvv.it_english;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

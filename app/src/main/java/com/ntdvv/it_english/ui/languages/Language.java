@@ -1,22 +1,22 @@
-package com.example.it_english.ui.profession;
+package com.ntdvv.it_english.ui.languages;
 
 import android.graphics.Bitmap;
 
-public class Profession {
+public class Language {
     private int id;
     private String name;
     private String  description;
     private Bitmap icon;
     private String iconPath;
 
-    public Profession(){
+    public Language(){
         this.id = -1;
         this.name = "";
         this.description = "";
     }
 
 
-    public Profession(int id, String name, String  description, Bitmap icon, String iconPath){
+    public Language(int id, String name, String  description, Bitmap icon, String iconPath){
         this.id = id;
         this.name = name;
         this.description = description;

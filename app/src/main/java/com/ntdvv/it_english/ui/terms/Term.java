@@ -1,27 +1,26 @@
-package com.example.it_english.ui.languages;
+package com.ntdvv.it_english.ui.terms;
 
 import android.graphics.Bitmap;
 
-public class Language {
+public class Term {
     private int id;
     private String name;
     private String  description;
     private Bitmap icon;
     private String iconPath;
 
-    public Language(){
+    public Term(){
         this.id = -1;
         this.name = "";
         this.description = "";
     }
 
-
-    public Language(int id, String name, String  description, Bitmap icon, String iconPath){
+    public Term(int id, String name, String  description, Bitmap icon, String iconPath ){
         this.id = id;
         this.name = name;
         this.description = description;
-        this.icon = icon;
         this.iconPath = iconPath;
+        this.icon = icon;
     }
 
     public int getId(){

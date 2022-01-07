@@ -1,13 +1,12 @@
-package com.example.it_english.ui.languages;
+package com.ntdvv.it_english.ui.languages;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.it_english.HttpHandler;
-import com.example.it_english.R;
-import com.example.it_english.ui.profession.Profession;
+import com.ntdvv.it_english.HttpHandler;
+import com.ntdvv.it_english.R;
 
 public class LanguageActivity extends AppCompatActivity {
 

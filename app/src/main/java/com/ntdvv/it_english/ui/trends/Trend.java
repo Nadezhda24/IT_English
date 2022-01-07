@@ -1,4 +1,4 @@
-package com.example.it_english.ui.trends;
+package com.ntdvv.it_english.ui.trends;
 
 import android.graphics.Bitmap;
 

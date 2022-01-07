@@ -1,4 +1,4 @@
-package com.example.it_english.ui.profession;
+package com.ntdvv.it_english.ui.languages;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,16 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.it_english.HttpHandler;
-import com.example.it_english.R;
-import com.example.it_english.databinding.FragmentProfessionBinding;
-import com.example.it_english.databinding.FragmentTermsBinding;
-import com.example.it_english.ui.terms.Term;
-import com.example.it_english.ui.terms.TermActivity;
-import com.example.it_english.ui.terms.TermAdapter;
-import com.example.it_english.ui.terms.TermsFragment;
+import com.ntdvv.it_english.HttpHandler;
+import com.ntdvv.it_english.R;
+import com.ntdvv.it_english.databinding.FragmentLanguagesBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,17 +26,18 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-public class ProfessionFragment extends Fragment {
-    private FragmentProfessionBinding binding;
-    ArrayList<Profession> Professions = new ArrayList<Profession>();
+public class LanguagesFragment  extends Fragment {
+
+    private FragmentLanguagesBinding binding;
+    ArrayList<Language> Languages = new ArrayList<Language>();
     String jsonRes = null;
-    private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_professions";
-    RecyclerView.Adapter ProfessionAdapter;
+    private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_languages";
+    RecyclerView.Adapter LanguageAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profession, container, false);
+        View view = inflater.inflate(R.layout.fragment_languages, container, false);
 
         setInitialData();
 
@@ -51,24 +46,24 @@ public class ProfessionFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        ProfessionAdapter.OnProfessionClickListener professionClickListener = new ProfessionAdapter.OnProfessionClickListener() {
+        LanguageAdapter.OnLanguageClickListener languageClickListener = new LanguageAdapter.OnLanguageClickListener() {
             @Override
-            public void onProfessionClick(Profession profession, int position) {
-                Intent intent=new Intent(getContext(), ProfessionActivity.class);
+            public void onLanguageClick(Language language, int position) {
+                Intent intent=new Intent(getContext(), LanguageActivity.class);
 
-                intent.putExtra("id", profession.getId());
-                intent.putExtra("name", profession.getName());
-                intent.putExtra("description", profession.getDescription());
-                intent.putExtra("icon", profession.getIconPath());
+                intent.putExtra("id", language.getId());
+                intent.putExtra("name", language.getName());
+                intent.putExtra("description", language.getDescription());
+                intent.putExtra("icon", language.getIconPath());
 
                 startActivity(intent);
             }
 
         };
 
-        ProfessionAdapter = new ProfessionAdapter(getActivity(), Professions, professionClickListener);
+        LanguageAdapter = new LanguageAdapter(getActivity(), Languages, languageClickListener);
 
-        recyclerView.setAdapter(ProfessionAdapter);
+        recyclerView.setAdapter(LanguageAdapter);
 
         return view;
 
@@ -77,9 +72,9 @@ public class ProfessionFragment extends Fragment {
 
     private void setInitialData(){
         try {
-            new ProfessionFragment.GetData().execute().get();
+            new LanguagesFragment.GetData().execute().get();
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
-            }
+           }
 
     }
 
@@ -98,15 +93,15 @@ public class ProfessionFragment extends Fragment {
         @Override
         protected void onPostExecute(Void v) {
             try {
-                JSONObject json = new JSONObject("{\"professions\": " + jsonRes + " }");
-                JSONArray arr = json.getJSONArray("professions");
+                JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
+                JSONArray arr = json.getJSONArray("terms");
                 for (int i=0; i < arr.length(); i++ ){
                     JSONObject obj = arr.getJSONObject(i);
                     int id = obj.getInt("id");
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    Professions.add(new Profession(id, name, description,  sh.urlToBitmap(img), img));
+                    Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {
@@ -117,7 +112,7 @@ public class ProfessionFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ProfessionAdapter.notifyDataSetChanged();
+                    LanguageAdapter.notifyDataSetChanged();
                 }
             });
         }

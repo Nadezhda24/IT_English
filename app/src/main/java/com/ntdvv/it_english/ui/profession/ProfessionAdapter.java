@@ -1,4 +1,4 @@
-package com.example.it_english.ui.profession;
+package com.ntdvv.it_english.ui.profession;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,10 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.it_english.R;
-import com.example.it_english.ui.terms.Term;
-import com.example.it_english.ui.terms.TermAdapter;
-import com.squareup.picasso.Picasso;
+import com.ntdvv.it_english.R;
 
 import java.util.List;
 

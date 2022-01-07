@@ -1,4 +1,4 @@
-package com.example.it_english.ui.trends;
+package com.ntdvv.it_english.ui.terms;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,57 +9,55 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.it_english.R;
-import com.example.it_english.ui.terms.Term;
-import com.example.it_english.ui.terms.TermAdapter;
-import com.squareup.picasso.Picasso;
+import com.ntdvv.it_english.R;
 
 import java.util.List;
 
-public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder>{
+public class TermAdapter  extends RecyclerView.Adapter<TermAdapter.ViewHolder>{
 
-    public interface OnTrendClickListener{
+    public interface OnTermClickListener{
 
-        void onTrendClick(Trend term, int position);
+        void onTermClick(Term term, int position);
     }
 
-    private final TrendAdapter.OnTrendClickListener onClickListener;
+    private final OnTermClickListener onClickListener;
 
 
     private final LayoutInflater inflater;
-    private final List<Trend> trends;
+    private final List<Term> terms;
 
-    TrendAdapter(Context context, List<Trend> trends, TrendAdapter.OnTrendClickListener onClickListener) {
+    TermAdapter(Context context, List<Term> terms, OnTermClickListener onClickListener) {
         this.onClickListener = onClickListener;
-        this.trends = trends;
+        this.terms = terms;
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public TrendAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TermAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.template, parent, false);
-        return new TrendAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Trend trend = trends.get(position);
+    public void onBindViewHolder(TermAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Term term = terms.get(position);
 
-        holder.Name.setText(trend.getName());
-        holder.Icon.setImageBitmap(trend.getIcon());
+        holder.Name.setText(term.getName());
+
+        holder.Icon.setImageBitmap(term.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickListener.onTrendClick(trend, position);
+                onClickListener.onTermClick(term, position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return trends.size();
+        return terms.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

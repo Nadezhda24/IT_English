@@ -1,4 +1,4 @@
-package com.example.it_english.ui.languages;
+package com.ntdvv.it_english.ui.trends;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,16 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.it_english.HttpHandler;
-import com.example.it_english.R;
-import com.example.it_english.databinding.FragmentLanguagesBinding;
-import com.example.it_english.databinding.FragmentTermsBinding;
-import com.example.it_english.ui.terms.Term;
-import com.example.it_english.ui.terms.TermActivity;
-import com.example.it_english.ui.terms.TermAdapter;
-import com.example.it_english.ui.terms.TermsFragment;
+import com.ntdvv.it_english.HttpHandler;
+import com.ntdvv.it_english.R;
+import com.ntdvv.it_english.databinding.FragmentTrendsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,18 +26,17 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-public class LanguagesFragment  extends Fragment {
-
-    private FragmentLanguagesBinding binding;
-    ArrayList<Language> Languages = new ArrayList<Language>();
+public class TrendsFragment extends Fragment {
+    private FragmentTrendsBinding binding;
+    ArrayList<Trend> Trends = new ArrayList<Trend>();
     String jsonRes = null;
-    private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_languages";
-    RecyclerView.Adapter LanguageAdapter;
+    private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_trends";
+    RecyclerView.Adapter TrendAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_languages, container, false);
+        View view = inflater.inflate(R.layout.fragment_trends, container, false);
 
         setInitialData();
 
@@ -52,24 +45,24 @@ public class LanguagesFragment  extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        LanguageAdapter.OnLanguageClickListener languageClickListener = new LanguageAdapter.OnLanguageClickListener() {
+        TrendAdapter.OnTrendClickListener trendClickListener = new TrendAdapter.OnTrendClickListener() {
             @Override
-            public void onLanguageClick(Language language, int position) {
-                Intent intent=new Intent(getContext(), LanguageActivity.class);
+            public void onTrendClick(Trend trend, int position) {
+                Intent intent=new Intent(getContext(),TrendActivity.class);
 
-                intent.putExtra("id", language.getId());
-                intent.putExtra("name", language.getName());
-                intent.putExtra("description", language.getDescription());
-                intent.putExtra("icon", language.getIconPath());
+                intent.putExtra("id", trend.getId());
+                intent.putExtra("name", trend.getName());
+                intent.putExtra("description", trend.getDescription());
+                intent.putExtra("icon", trend.getIconPath());
 
                 startActivity(intent);
-            }
 
+            }
         };
 
-        LanguageAdapter = new LanguageAdapter(getActivity(), Languages, languageClickListener);
+        TrendAdapter = new TrendAdapter(getActivity(), Trends, trendClickListener);
 
-        recyclerView.setAdapter(LanguageAdapter);
+        recyclerView.setAdapter(TrendAdapter);
 
         return view;
 
@@ -78,9 +71,10 @@ public class LanguagesFragment  extends Fragment {
 
     private void setInitialData(){
         try {
-            new LanguagesFragment.GetData().execute().get();
+            new TrendsFragment.GetData().execute().get();
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
-           }
+            e.printStackTrace();
+        }
 
     }
 
@@ -107,7 +101,8 @@ public class LanguagesFragment  extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
+
+                    Trends.add(new Trend(id, name, description, sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {
@@ -118,7 +113,7 @@ public class LanguagesFragment  extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    LanguageAdapter.notifyDataSetChanged();
+                    TrendAdapter.notifyDataSetChanged();
                 }
             });
         }
@@ -126,12 +121,14 @@ public class LanguagesFragment  extends Fragment {
 
     public Bitmap getBitmapFromURL(String src) {
         try {
+
             java.net.URL url = new java.net.URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url
+            HttpURLConnection  urlConnection = (HttpURLConnection) url
                     .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
+            urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
+            urlConnection.connect();
+
+            InputStream input = urlConnection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             return myBitmap;
         } catch (IOException e) {

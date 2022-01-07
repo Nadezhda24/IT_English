@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".ui.trends.TrendActivity">
+    tools:context="com.ntdvv.it_english.ui.trends.TrendActivity">
 
     <ScrollView
         android:id="@+id/Scroll"

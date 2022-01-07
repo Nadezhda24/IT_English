@@ -1,4 +1,4 @@
-package com.example.it_english;
+package com.ntdvv.it_english;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,7 +10,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.it_english.databinding.ActivityMainBinding;
+import com.ntdvv.it_english.R;
+import com.ntdvv.it_english.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

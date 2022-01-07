@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.it_english">
+    package="com.ntdvv.it_english">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,19 +15,19 @@
         android:theme="@style/Theme.IT_English"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.languages.LanguageActivity"
+            android:name="com.ntdvv.it_english.ui.languages.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profession.ProfessionActivity"
+            android:name="com.ntdvv.it_english.ui.profession.ProfessionActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.trends.TrendActivity"
+            android:name="com.ntdvv.it_english.ui.trends.TrendActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.terms.TermActivity"
+            android:name="com.ntdvv.it_english.ui.terms.TermActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.ntdvv.it_english.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
