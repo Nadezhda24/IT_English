@@ -1,5 +1,6 @@
 package com.example.it_english.ui.terms;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ public class TermActivity extends AppCompatActivity {
         term.setId(arguments.getInt("id"));
         term.setName(arguments.getString("name"));
         term.setDescription(arguments.getString("description"));
+        term.setIconPath(arguments.getString("icon"));
+
 
         TextView name = findViewById(R.id.Name);
         name.setText(term.getName());

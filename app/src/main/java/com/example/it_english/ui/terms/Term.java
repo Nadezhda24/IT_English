@@ -7,6 +7,7 @@ public class Term {
     private String name;
     private String  description;
     private Bitmap icon;
+    private String iconPath;
 
     public Term(){
         this.id = -1;
@@ -14,10 +15,11 @@ public class Term {
         this.description = "";
     }
 
-    public Term(int id, String name, String  description, Bitmap icon ){
+    public Term(int id, String name, String  description, Bitmap icon, String iconPath ){
         this.id = id;
         this.name = name;
         this.description = description;
+        this.iconPath = iconPath;
         this.icon = icon;
     }
 
@@ -31,6 +33,10 @@ public class Term {
 
     public String getDescription(){
         return this.description;
+    }
+
+    public String getIconPath(){
+        return this.iconPath;
     }
 
     public Bitmap getIcon(){
@@ -47,6 +53,10 @@ public class Term {
 
     public void setDescription(String  description){
         this.description = description;
+    }
+
+    public void setIconPath(String  iconPath){
+        this.iconPath = iconPath;
     }
 
     public void setIcon(Bitmap icon){

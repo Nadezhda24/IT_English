@@ -56,12 +56,12 @@ public class TermsFragment extends Fragment {
             @Override
             public void onTermClick(Term term, int position) {
 
-                Intent intent=new Intent(getContext(),TermActivity.class);
+                Intent intent =new Intent(getContext(),TermActivity.class);
 
                 intent.putExtra("id", term.getId());
                 intent.putExtra("name", term.getName());
                 intent.putExtra("description", term.getDescription());
-                intent.putExtra("icon", term.getIcon());
+                intent.putExtra("icon", term.getIconPath());
 
                 startActivity(intent);
             }
@@ -118,7 +118,7 @@ public class TermsFragment extends Fragment {
                                 InputStream input = connection.getInputStream();
                                 Bitmap myBitmap = BitmapFactory.decodeStream(input);
 
-                                Terms.add(new Term(id, name, description, myBitmap));
+                                Terms.add(new Term(id, name, description, myBitmap, img));
                             }
                             catch (Exception e) {
                                 e.printStackTrace();
