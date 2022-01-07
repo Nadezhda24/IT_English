@@ -6,6 +6,14 @@ public class Language {
     private String  description;
     private int icon;
 
+    public Language(){
+        this.id = -1;
+        this.name = "";
+        this.description = "";
+        this.icon = -1;
+    }
+
+
     public Language(int id, String name, String  description, int icon ){
         this.id = id;
         this.name = name;

@@ -15,6 +15,12 @@
         android:theme="@style/Theme.IT_English"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.languages.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profession.ProfessionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.trends.TrendActivity"
             android:exported="false" />
         <activity

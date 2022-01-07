@@ -6,6 +6,13 @@ public class Profession {
     private String  description;
     private int icon;
 
+    public Profession(){
+        this.id = -1;
+        this.name = "";
+        this.description = "";
+        this.icon = -1;
+    }
+
     public Profession(int id, String name, String  description, int icon ){
         this.id = id;
         this.name = name;
