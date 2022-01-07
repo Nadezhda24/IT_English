@@ -3,9 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projects/IT_English/app/src/main/res/layout/activity_description.xml" value="0.16485507246376813" />
-        <entry key="..\:/Projects/IT_English/app/src/main/res/layout/activity_language.xml" value="0.1526268115942029" />
-        <entry key="..\:/Projects/IT_English/app/src/main/res/layout/activity_profession.xml" value="0.1" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/drawable-v24/rounded_layout.xml" value="0.26153846153846155" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/drawable/customborder.xml" value="0.1" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/drawable/customfon.xml" value="0.23425925925925925" />
@@ -14,7 +11,7 @@
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/activity_profession.xml" value="0.264" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/activity_term.xml" value="0.2" />
-        <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/activity_trend.xml" value="0.536" />
+        <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/activity_trend.xml" value="0.2730806608357629" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/fragment_languages.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/fragment_notifications.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/Asus/Documents/GitHub/IT_English/app/src/main/res/layout/fragment_profession.xml" value="0.2259963768115942" />

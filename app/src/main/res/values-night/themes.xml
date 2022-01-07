@@ -8,6 +8,6 @@
         <item name="colorAccent">#D5C8FE</item>
         <!-- Customize your theme here. -->
 
-
+        <item name="android:navigationBarColor">#7169B4</item>
     </style>
 </resources>
