@@ -6,6 +6,14 @@ public class Trend {
     private String  description;
     private int icon;
 
+    public Trend(){
+        this.id = -1;
+        this.name = "";
+        this.description = "";
+        this.icon = -1;
+    }
+
+
     public Trend(int id, String name, String  description, int icon ){
         this.id = id;
         this.name = name;

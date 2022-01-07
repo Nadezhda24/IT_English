@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.terms.TermActivity">
+    tools:context=".ui.trends.TrendActivity">
 
     <TextView
         android:id="@+id/Name"
@@ -43,4 +43,5 @@
         app:layout_constraintStart_toStartOf="@+id/Description"
         app:layout_constraintTop_toBottomOf="@+id/Description"
         tools:srcCompat="@tools:sample/avatars" />
+
 </android.support.constraint.ConstraintLayout>
