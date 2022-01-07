@@ -86,6 +86,7 @@ public class TermsFragment extends Fragment {
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
+        HttpHandler sh = new HttpHandler();
         @Override
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
@@ -106,30 +107,7 @@ public class TermsFragment extends Fragment {
                     String description = obj.getString("description");
                     String img = obj.getString("img");
 
-                    Thread thread = new Thread(new Runnable() {
-                        public void run() {
-                            try {
-                                java.net.URL url = new java.net.URL(img);
-                                HttpURLConnection connection = (HttpURLConnection) url
-                                        .openConnection();
-                                connection.setDoInput(true);
-                                connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
-                                connection.connect();
-                                InputStream input = connection.getInputStream();
-                                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-
-                                Terms.add(new Term(id, name, description, myBitmap, img));
-                            }
-                            catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    thread.start();
-                    try {
-                        thread.join();
-                    } catch (Exception e) {}
-
+                    Terms.add(new Term(id, name, description, sh.urlToBitmap(img), img));
 
                 }
             } catch (JSONException e) {

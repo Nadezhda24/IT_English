@@ -3,8 +3,10 @@ package com.example.it_english.ui.terms;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.it_english.HttpHandler;
 import com.example.it_english.R;
 
 public class TermActivity extends AppCompatActivity {
@@ -13,6 +15,8 @@ public class TermActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
+
+        HttpHandler sh = new HttpHandler();
 
         Bundle arguments = getIntent().getExtras();
         Term term = new Term();
@@ -27,6 +31,9 @@ public class TermActivity extends AppCompatActivity {
 
         TextView description = findViewById(R.id.Description);
         description.setText(term.getDescription());
+
+        ImageView Icon = findViewById(R.id.Img);
+        Icon.setImageBitmap( sh.urlToBitmap(term.getIconPath()));
 
     }
 }
