@@ -55,7 +55,7 @@ public class LanguagesFragment  extends Fragment {
         LanguageAdapter.OnLanguageClickListener languageClickListener = new LanguageAdapter.OnLanguageClickListener() {
             @Override
             public void onLanguageClick(Language language, int position) {
-                Intent intent=new Intent(getContext(), TermActivity.class);
+                Intent intent=new Intent(getContext(), LanguageActivity.class);
 
                 intent.putExtra("id", language.getId());
                 intent.putExtra("name", language.getName());
