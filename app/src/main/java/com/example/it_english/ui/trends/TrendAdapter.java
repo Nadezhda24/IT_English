@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.it_english.R;
 import com.example.it_english.ui.terms.Term;
 import com.example.it_english.ui.terms.TermAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,11 +43,15 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(TrendAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Trend trend = trends.get(position);
 
         holder.Name.setText(trend.getName());
-        holder.Icon.setImageResource(trend.getIcon());
+
+        Picasso.with(inflater.getContext())
+                .load(trend.getIcon())
+                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
+                .into(holder.Icon);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

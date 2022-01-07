@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.it_english.R;
 import com.example.it_english.ui.terms.Term;
 import com.example.it_english.ui.terms.TermAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,7 +46,10 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
         Language language = languages.get(position);
 
         holder.Name.setText(language.getName());
-        holder.Icon.setImageResource(language.getIcon());
+        Picasso.with(inflater.getContext())
+                .load(language.getIcon())
+                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
+                .into(holder.Icon);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

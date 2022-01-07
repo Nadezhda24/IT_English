@@ -4,17 +4,16 @@ public class Language {
     private int id;
     private String name;
     private String  description;
-    private int icon;
+    private String icon;
 
     public Language(){
         this.id = -1;
         this.name = "";
         this.description = "";
-        this.icon = -1;
     }
 
 
-    public Language(int id, String name, String  description, int icon ){
+    public Language(int id, String name, String  description, String icon ){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,7 +32,7 @@ public class Language {
         return this.description;
     }
 
-    public int getIcon(){
+    public String getIcon(){
         return this.icon;
     }
 
@@ -49,7 +48,7 @@ public class Language {
         this.description = description;
     }
 
-    public void setIcon(int icon){
+    public void setIcon(String icon){
         this.icon = icon;
     }
 

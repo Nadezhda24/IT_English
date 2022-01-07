@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.it_english.R;
 import com.example.it_english.ui.terms.Term;
 import com.example.it_english.ui.terms.TermAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class ProfessionAdapter extends RecyclerView.Adapter<ProfessionAdapter.Vi
         Profession profession = professions.get(position);
 
         holder.Name.setText(profession.getName());
-        holder.Icon.setImageResource(profession.getIcon());
+        Picasso.with(inflater.getContext())
+                .load(profession.getIcon())
+                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
+                .into(holder.Icon);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

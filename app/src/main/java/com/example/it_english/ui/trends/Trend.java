@@ -1,20 +1,21 @@
 package com.example.it_english.ui.trends;
 
+import android.graphics.Bitmap;
+
 public class Trend {
     private int id;
     private String name;
     private String  description;
-    private int icon;
+    private String icon;
 
     public Trend(){
         this.id = -1;
         this.name = "";
         this.description = "";
-        this.icon = -1;
     }
 
 
-    public Trend(int id, String name, String  description, int icon ){
+    public Trend(int id, String name, String  description, String icon ){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,7 +34,7 @@ public class Trend {
         return this.description;
     }
 
-    public int getIcon(){
+    public String getIcon(){
         return this.icon;
     }
 
@@ -49,7 +50,7 @@ public class Trend {
         this.description = description;
     }
 
-    public void setIcon(int icon){
+    public void setIcon(String icon){
         this.icon = icon;
     }
 

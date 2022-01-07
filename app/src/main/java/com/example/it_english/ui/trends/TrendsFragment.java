@@ -79,7 +79,7 @@ public class TrendsFragment extends Fragment {
         try {
             new TrendsFragment.GetData().execute().get();
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
-            Trends.add(new Trend(1, "Проверьте интернет и еще раз зайдите в раздел", "", R.drawable.warning));
+            e.printStackTrace();
         }
 
     }
@@ -104,8 +104,8 @@ public class TrendsFragment extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    //Drawable drawable = new BitmapDrawable(getResources(), getBitmapFromURL("http://q90932z7.beget.tech/img/terms_img_term_6.jpg"));
-                    Trends.add(new Trend(id, name, description, R.drawable.warning));
+                    //Drawable drawable = new BitmapDrawable(getResources(), );
+                    Trends.add(new Trend(id, name, description, img));
 
                 }
             } catch (JSONException e) {
@@ -124,12 +124,14 @@ public class TrendsFragment extends Fragment {
 
     public Bitmap getBitmapFromURL(String src) {
         try {
+
             java.net.URL url = new java.net.URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url
+            HttpURLConnection  urlConnection = (HttpURLConnection) url
                     .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
+            urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
+            urlConnection.connect();
+
+            InputStream input = urlConnection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             return myBitmap;
         } catch (IOException e) {

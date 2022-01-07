@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.it_english.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,7 +46,11 @@ public class TermAdapter  extends RecyclerView.Adapter<TermAdapter.ViewHolder>{
         Term term = terms.get(position);
 
         holder.Name.setText(term.getName());
-        holder.Icon.setImageResource(term.getIcon());
+        Picasso.with(inflater.getContext())
+                .load(term.getIcon())
+                .error(R.drawable.warning) // показываем что-то, если не удалось скачать картинку
+                .into(holder.Icon);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

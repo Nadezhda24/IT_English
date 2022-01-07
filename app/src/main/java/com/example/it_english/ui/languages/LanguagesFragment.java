@@ -80,8 +80,7 @@ public class LanguagesFragment  extends Fragment {
         try {
             new LanguagesFragment.GetData().execute().get();
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
-            Languages.add(new Language(1, "Проверьте интернет и еще раз зайдите в раздел", "", R.drawable.warning));
-        }
+           }
 
     }
 
@@ -105,8 +104,7 @@ public class LanguagesFragment  extends Fragment {
                     String name = obj.getString("title");
                     String description = obj.getString("description");
                     String img = obj.getString("img");
-                    //Drawable drawable = new BitmapDrawable(getResources(), getBitmapFromURL("http://q90932z7.beget.tech/img/terms_img_term_6.jpg"));
-                    Languages.add(new Language(id, name, description, R.drawable.warning));
+                    Languages.add(new Language(id, name, description, img));
 
                 }
             } catch (JSONException e) {

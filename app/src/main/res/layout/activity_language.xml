@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     tools:context=".ui.languages.LanguageActivity">
-
     <TextView
         android:id="@+id/Name"
         android:layout_width="0dp"
