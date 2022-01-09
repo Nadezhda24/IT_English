@@ -34,7 +34,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold|italic" />
 
-            <TextView
+            <WebView
                 android:id="@+id/Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,9 +42,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
                 android:text=""
                 android:textAlignment="viewStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                tools:ignore="WebViewLayout" />
 
             <ImageView
                 android:id="@+id/Img"

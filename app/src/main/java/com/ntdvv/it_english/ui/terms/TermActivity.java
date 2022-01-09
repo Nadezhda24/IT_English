@@ -2,6 +2,7 @@ package com.ntdvv.it_english.ui.terms;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,8 +29,9 @@ public class TermActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.Name);
         name.setText(term.getName());
 
-        TextView description = findViewById(R.id.Description);
-        description.setText(term.getDescription());
+        WebView description = (WebView) findViewById(R.id.Description);
+        description.loadData("<html><body>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+
 
         ImageView Icon = findViewById(R.id.Img);
         Icon.setImageBitmap( sh.urlToBitmap(term.getIconPath()));

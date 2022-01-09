@@ -2,6 +2,7 @@ package com.ntdvv.it_english.ui.trends;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ public class TrendActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.Name);
         name.setText(trend.getName());
 
-        TextView description = findViewById(R.id.Description);
-        description.setText(trend.getDescription());
+        WebView description = (WebView) findViewById(R.id.Description);
+        description.loadData("<html><body>" + trend.getDescription() + "</body></html>","text/html", "UTF-8");
 
         ImageView Icon = findViewById(R.id.Img);
         Icon.setImageBitmap( sh.urlToBitmap(trend.getIconPath()));

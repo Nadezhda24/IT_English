@@ -2,6 +2,7 @@ package com.ntdvv.it_english.ui.languages;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,9 @@ public class LanguageActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.Name);
         name.setText(language.getName());
 
-        TextView description = findViewById(R.id.Description);
-        description.setText(language.getDescription());
+        WebView description = (WebView) findViewById(R.id.Description);
+        description.loadData("<html><body>" + language.getDescription() + "</body></html>","text/html", "UTF-8");
+
 
         ImageView Icon = findViewById(R.id.Img);
         Icon.setImageBitmap( sh.urlToBitmap(language.getIconPath()));
