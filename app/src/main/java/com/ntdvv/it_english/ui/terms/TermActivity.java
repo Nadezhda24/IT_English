@@ -36,12 +36,32 @@ public class TermActivity extends AppCompatActivity {
         switch (currentNightMode) {
             case Configuration.UI_MODE_NIGHT_NO:
                 description.setBackgroundColor(Color.TRANSPARENT); //нyжно, иначе фон текста более белый, чем основной фон
-                description.loadData("<html><body>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+                description.loadData("<html>" +
+                                "<head>" +
+                                "    <style>" +
+                                "      p { text-indent: 25px; }" +
+                                "    </style>" +
+                                "  <head>"+
+                                "<body style='text-align: justify;'>"
+                                + term.getDescription() +
+                                "</body>" +
+                                "</html>",
+                        "text/html", "UTF-8");
                 break;
             case Configuration.UI_MODE_NIGHT_YES:
                 description.setBackgroundColor(Color.TRANSPARENT);
-                description.loadData("<html>"
-                        + "<body><font color='white'>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+                description.loadData("<html>" +
+                                "<head>" +
+                                "    <style>" +
+                                "      p { text-indent: 25px; }" +
+                                "    </style>" +
+                                "  <head>"+
+                                "<body style='text-align: justify;'>" +
+                                "<font color='white'>" +
+                                term.getDescription() +
+                                "</body>" +
+                                "</html>",
+                        "text/html", "UTF-8");
                 break;
         }
 
