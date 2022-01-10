@@ -1,5 +1,7 @@
 package com.ntdvv.it_english.ui.terms;
 
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -30,7 +32,19 @@ public class TermActivity extends AppCompatActivity {
         name.setText(term.getName());
 
         WebView description = (WebView) findViewById(R.id.Description);
-        description.loadData("<html><body>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                description.setBackgroundColor(Color.TRANSPARENT); //нyжно, иначе фон текста более белый, чем основной фон
+                description.loadData("<html><body>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+                break;
+            case Configuration.UI_MODE_NIGHT_YES:
+                description.setBackgroundColor(Color.TRANSPARENT);
+                description.loadData("<html>"
+                        + "<body><font color='white'>" + term.getDescription() + "</body></html>","text/html", "UTF-8");
+                break;
+        }
+
 
 
         ImageView Icon = findViewById(R.id.Img);
