@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.AdapterView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -55,6 +58,27 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.app_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_refresh) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+            finish();
+            startActivity(getIntent());
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class GetData extends AsyncTask<Context, Void, Void> {
