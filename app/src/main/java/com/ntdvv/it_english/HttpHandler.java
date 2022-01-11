@@ -1,9 +1,11 @@
 package com.ntdvv.it_english;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -48,28 +50,7 @@ public class HttpHandler {
         return response;
     }
 
-    private String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
-    }
-
-    public Bitmap urlToBitmap (String img){
+    public void urlToBitmap (String img, Context context){
         final Bitmap[] myBitmap = new Bitmap[1];
         Thread thread = new Thread(new Runnable() {
             public void run() {
@@ -83,7 +64,15 @@ public class HttpHandler {
                     InputStream input = connection.getInputStream();
                     myBitmap[0] = BitmapFactory.decodeStream(input);
 
-
+                    ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
+                    File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+                    directory.mkdirs();
+                    File path = new File(directory,img);
+                    path.createNewFile();
+                    FileOutputStream out = new FileOutputStream(path);
+                    myBitmap[0].compress(Bitmap.CompressFormat.PNG, 100, out);
+                    out.flush();
+                    out.close();
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -97,8 +86,14 @@ public class HttpHandler {
         } catch (Exception e) {
 
         }
+    }
 
-        return myBitmap[0];
+    public static Bitmap openImage(String img, Context context){
+        ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        File path = new File(directory,img);
+        Bitmap bmp=BitmapFactory.decodeFile(path.getPath());
+        return bmp;
     }
 
 }
