@@ -1,7 +1,13 @@
 package com.ntdvv.it_english.ui.terms;
 
 
+import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
+import static com.ntdvv.it_english.MainActivity.TERMS;
+import static com.ntdvv.it_english.MainActivity.TRENDS;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +21,7 @@ import android.view.ViewGroup;
 import com.ntdvv.it_english.HttpHandler;
 import com.ntdvv.it_english.R;
 import com.ntdvv.it_english.databinding.FragmentTermsBinding;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,50 +75,22 @@ public class TermsFragment extends Fragment {
 
 
     private void setInitialData(){
+        SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String jsonRes = mSettings.getString(TERMS,"");
         try {
-            new GetData().execute().get();
-        } catch (Exception e) { //TODO: сделать нормальное решение для catch
+            JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
+            JSONArray arr = json.getJSONArray("terms");
+            for (int i=0; i < arr.length(); i++){
+                JSONObject obj = arr.getJSONObject(i);
+                int id = obj.getInt("id");
+                String name = obj.getString("title");
+                String description = obj.getString("description");
+                String img = obj.getString("img");
 
-        }
-
-    }
-
-    private class GetData extends AsyncTask<Void, Void, Void> {
-        HttpHandler sh = new HttpHandler();
-        @Override
-        protected Void doInBackground(Void... voids) {
-            HttpHandler sh = new HttpHandler();
-            String jsonStr = sh.makeServiceCall(url);
-            jsonRes = jsonStr;
-            return null;
-        }
-        //выполняется после doInBackground
-        @Override
-        protected void onPostExecute(Void v) {
-            try {
-                JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
-                JSONArray arr = json.getJSONArray("terms");
-                for (int i=0; i < arr.length(); i++ ){
-                    JSONObject obj = arr.getJSONObject(i);
-                    int id = obj.getInt("id");
-                    String name = obj.getString("title");
-                    String description = obj.getString("description");
-                    String img = obj.getString("img");
-
-                    Terms.add(new Term(id, name, description, sh.urlToBitmap(img), img));
-
-                }
-            } catch (JSONException e) {
-                 e.printStackTrace();
+                Terms.add(new Term(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
             }
-
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                   TermAdapter.notifyDataSetChanged();
-                }
-            });
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }

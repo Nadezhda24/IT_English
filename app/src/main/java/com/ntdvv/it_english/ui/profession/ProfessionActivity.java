@@ -65,7 +65,7 @@ public class ProfessionActivity extends AppCompatActivity {
         }
 
         ImageView Icon = findViewById(R.id.Img);
-        Icon.setImageBitmap( sh.urlToBitmap(profession.getIconPath()));
+        Icon.setImageBitmap(HttpHandler.openImage(profession.getIconPath(), this));
 
     }
 }

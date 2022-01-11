@@ -1,6 +1,11 @@
 package com.ntdvv.it_english.ui.trends;
 
+import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
+import static com.ntdvv.it_english.MainActivity.TRENDS;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -29,7 +34,6 @@ import java.util.ArrayList;
 public class TrendsFragment extends Fragment {
     private FragmentTrendsBinding binding;
     ArrayList<Trend> Trends = new ArrayList<Trend>();
-    String jsonRes = null;
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_trends";
     RecyclerView.Adapter TrendAdapter;
 
@@ -70,71 +74,23 @@ public class TrendsFragment extends Fragment {
 
 
     private void setInitialData(){
+        SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String jsonRes = mSettings.getString(TRENDS,"");
         try {
-            new TrendsFragment.GetData().execute().get();
-        } catch (Exception e) { //TODO: сделать нормальное решение для catch
-            e.printStackTrace();
-        }
+            JSONObject json = new JSONObject("{\"trends\": " + jsonRes + " }");
+            JSONArray arr = json.getJSONArray("trends");
+            for (int i=0; i < arr.length(); i++){
+                JSONObject obj = arr.getJSONObject(i);
+                int id = obj.getInt("id");
+                String name = obj.getString("title");
+                String description = obj.getString("description");
+                String img = obj.getString("img");
 
-    }
-
-    private class GetData extends AsyncTask<Void, Void, Void> {
-
-        HttpHandler sh = new HttpHandler();
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            HttpHandler sh = new HttpHandler();
-            String jsonStr = sh.makeServiceCall(url);
-            jsonRes = jsonStr;
-            return null;
-        }
-        //выполняется после doInBackground
-        @Override
-        protected void onPostExecute(Void v) {
-            try {
-                JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
-                JSONArray arr = json.getJSONArray("terms");
-                for (int i=0; i < arr.length(); i++ ){
-                    JSONObject obj = arr.getJSONObject(i);
-                    int id = obj.getInt("id");
-                    String name = obj.getString("title");
-                    String description = obj.getString("description");
-                    String img = obj.getString("img");
-
-                    Trends.add(new Trend(id, name, description, sh.urlToBitmap(img), img));
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                Trends.add(new Trend(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
             }
-
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    TrendAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-    }
-
-    public Bitmap getBitmapFromURL(String src) {
-        try {
-
-            java.net.URL url = new java.net.URL(src);
-            HttpURLConnection  urlConnection = (HttpURLConnection) url
-                    .openConnection();
-            urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
-            urlConnection.connect();
-
-            InputStream input = urlConnection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            return null;
         }
-    }
 
+    }
 }

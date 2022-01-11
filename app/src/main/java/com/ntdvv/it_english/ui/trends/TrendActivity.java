@@ -65,6 +65,6 @@ public class TrendActivity extends AppCompatActivity {
         }
 
         ImageView Icon = findViewById(R.id.Img);
-        Icon.setImageBitmap( sh.urlToBitmap(trend.getIconPath()));
+        Icon.setImageBitmap(HttpHandler.openImage(trend.getIconPath(), this));
     }
 }

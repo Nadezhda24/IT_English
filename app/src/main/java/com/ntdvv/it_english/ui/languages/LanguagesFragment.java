@@ -1,6 +1,11 @@
 package com.ntdvv.it_english.ui.languages;
 
+import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
+import static com.ntdvv.it_english.MainActivity.TERMS;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -16,6 +21,7 @@ import android.view.ViewGroup;
 import com.ntdvv.it_english.HttpHandler;
 import com.ntdvv.it_english.R;
 import com.ntdvv.it_english.databinding.FragmentLanguagesBinding;
+import com.ntdvv.it_english.ui.terms.Term;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,67 +77,22 @@ public class LanguagesFragment  extends Fragment {
 
 
     private void setInitialData(){
+        SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String jsonRes = mSettings.getString(TERMS,"");
         try {
-            new LanguagesFragment.GetData().execute().get();
-        } catch (Exception e) { //TODO: сделать нормальное решение для catch
-           }
+            JSONObject json = new JSONObject("{\"languages\": " + jsonRes + " }");
+            JSONArray arr = json.getJSONArray("languages");
+            for (int i=0; i < arr.length(); i++){
+                JSONObject obj = arr.getJSONObject(i);
+                int id = obj.getInt("id");
+                String name = obj.getString("title");
+                String description = obj.getString("description");
+                String img = obj.getString("img");
 
-    }
-
-    private class GetData extends AsyncTask<Void, Void, Void> {
-
-        HttpHandler sh = new HttpHandler();
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            HttpHandler sh = new HttpHandler();
-            String jsonStr = sh.makeServiceCall(url);
-            jsonRes = jsonStr;
-            return null;
-        }
-        //выполняется после doInBackground
-        @Override
-        protected void onPostExecute(Void v) {
-            try {
-                JSONObject json = new JSONObject("{\"terms\": " + jsonRes + " }");
-                JSONArray arr = json.getJSONArray("terms");
-                for (int i=0; i < arr.length(); i++ ){
-                    JSONObject obj = arr.getJSONObject(i);
-                    int id = obj.getInt("id");
-                    String name = obj.getString("title");
-                    String description = obj.getString("description");
-                    String img = obj.getString("img");
-                    Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                Languages.add(new Language(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
             }
-
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    LanguageAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-    }
-
-    public Bitmap getBitmapFromURL(String src) {
-        try {
-            java.net.URL url = new java.net.URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            return null;
         }
     }
-
 }
