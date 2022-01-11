@@ -1,6 +1,7 @@
 package com.ntdvv.it_english.ui.languages;
 
 import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
+import static com.ntdvv.it_english.MainActivity.LANGUAGE;
 import static com.ntdvv.it_english.MainActivity.TERMS;
 
 import android.content.Context;
@@ -78,7 +79,7 @@ public class LanguagesFragment  extends Fragment {
 
     private void setInitialData(){
         SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        String jsonRes = mSettings.getString(TERMS,"");
+        String jsonRes = mSettings.getString(LANGUAGE,"");
         try {
             JSONObject json = new JSONObject("{\"languages\": " + jsonRes + " }");
             JSONArray arr = json.getJSONArray("languages");

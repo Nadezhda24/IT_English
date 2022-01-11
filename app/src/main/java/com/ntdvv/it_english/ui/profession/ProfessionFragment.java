@@ -1,6 +1,7 @@
 package com.ntdvv.it_english.ui.profession;
 
 import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
+import static com.ntdvv.it_english.MainActivity.PROFESSION;
 import static com.ntdvv.it_english.MainActivity.TERMS;
 
 import android.content.Context;
@@ -77,7 +78,7 @@ public class ProfessionFragment extends Fragment {
 
     private void setInitialData(){
         SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        String jsonRes = mSettings.getString(TERMS,"");
+        String jsonRes = mSettings.getString(PROFESSION,"");
         try {
             JSONObject json = new JSONObject("{\"professions\": " + jsonRes + " }");
             JSONArray arr = json.getJSONArray("professions");
