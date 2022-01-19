@@ -1,0 +1,18 @@
+<h3>Definition</h3>
+<p>
+Garbage collector (GC) - is an instrument for automatic memory management. It's presented in <i>Python</i>,
+<i>Java</i>, <i>C#</i> and other programming languages. 
+</p>
+
+<h3>How does it work?<h3>
+
+<p>
+If piece of memory is no longer referenced by any variable in program it's called <b>garbage</b>. GC periodically tries to reclaim such memory to free memory for future use.
+</p>
+	
+<p>As you may know the capacity of RAM of computer is limited. If program will not release useless memory we will get <b>memory leak</b>. Memory leak is a situation when a program loses ability to reuse some region of memory due to deletion of reference or pointer to that region.</p>
+	
+<p>In programming programming languages with manual memory management such situations aren't unusual. For example in C and C++ developer can simply forget to release dynamically allocated memory when it becomes useless. Such program gradually consumes all available memory of computer. At the end that program will break down system, because other programs won't be able to get required memory.</p>
+	
+<h3>See also</h3>
+RAM, C, C++ 
