@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
                     String img = obj.getString("img");
-                    sh.urlToBitmap(img, context);
+                   // sh.urlToBitmap(img, context);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
                     String img = obj.getString("img");
-                    sh.urlToBitmap(img, context);
+                   // sh.urlToBitmap(img, context);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
                     String img = obj.getString("img");
-                    sh.urlToBitmap(img, context);
+                  //  sh.urlToBitmap(img, context);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
                     String img = obj.getString("img");
-                    sh.urlToBitmap(img, context);
+                 //   sh.urlToBitmap(img, context);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

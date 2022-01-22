@@ -67,8 +67,9 @@ public class TermActivity extends AppCompatActivity {
 
 
 
+       // ImageView Icon = findViewById(R.id.Img);
+       // Icon.setImageBitmap(HttpHandler.openImage(term.getIconPath(), this));
         ImageView Icon = findViewById(R.id.Img);
-        Icon.setImageBitmap(HttpHandler.openImage(term.getIconPath(), this));
-
+        Icon.setImageBitmap( sh.urlToBitmap(term.getIconPath()));
     }
 }

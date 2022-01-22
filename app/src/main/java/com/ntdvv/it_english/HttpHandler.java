@@ -50,7 +50,40 @@ public class HttpHandler {
         return response;
     }
 
-    public void urlToBitmap (String img, Context context){
+    public Bitmap urlToBitmap (String img){
+        final Bitmap[] myBitmap = new Bitmap[1];
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    java.net.URL url = new java.net.URL(img);
+                    HttpURLConnection connection = (HttpURLConnection) url
+                            .openConnection();
+                    connection.setDoInput(true);
+                    connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:221.0) Gecko/20100101 Firefox/31.0");
+                    connection.connect();
+                    InputStream input = connection.getInputStream();
+                    myBitmap[0] = BitmapFactory.decodeStream(input);
+
+
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+
+        }
+
+        return myBitmap[0];
+    }
+
+
+    /*public void urlToBitmap (String img, Context context){
         final Bitmap[] myBitmap = new Bitmap[1];
         Thread thread = new Thread(new Runnable() {
             public void run() {
@@ -87,13 +120,13 @@ public class HttpHandler {
 
         }
     }
-
-    public static Bitmap openImage(String img, Context context){
+*/
+   /* public static Bitmap openImage(String img, Context context){
         ContextWrapper cw = new ContextWrapper(context.getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         File path = new File(directory,img);
         Bitmap bmp=BitmapFactory.decodeFile(path.getPath());
         return bmp;
     }
-
+*/
 }

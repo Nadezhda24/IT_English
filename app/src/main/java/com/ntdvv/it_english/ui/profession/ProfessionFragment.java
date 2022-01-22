@@ -38,6 +38,7 @@ public class ProfessionFragment extends Fragment {
     ArrayList<Profession> Professions = new ArrayList<Profession>();
     String jsonRes = null;
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_professions";
+    HttpHandler sh = new HttpHandler();
     RecyclerView.Adapter ProfessionAdapter;
 
 
@@ -89,7 +90,7 @@ public class ProfessionFragment extends Fragment {
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Professions.add(new Profession(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
+                Professions.add(new Profession(id, name, description, sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();

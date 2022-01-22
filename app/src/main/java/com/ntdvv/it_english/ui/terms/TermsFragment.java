@@ -34,6 +34,7 @@ public class TermsFragment extends Fragment {
 
     private FragmentTermsBinding binding;
     ArrayList<Term> Terms = new ArrayList<Term>();
+    HttpHandler sh = new HttpHandler();
     String jsonRes = null;
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_terms";
     RecyclerView.Adapter TermAdapter;
@@ -87,7 +88,7 @@ public class TermsFragment extends Fragment {
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Terms.add(new Term(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
+                Terms.add(new Term(id, name, description,sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -38,6 +38,7 @@ public class LanguagesFragment  extends Fragment {
     private FragmentLanguagesBinding binding;
     ArrayList<Language> Languages = new ArrayList<Language>();
     String jsonRes = null;
+    HttpHandler sh = new HttpHandler();
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_languages";
     RecyclerView.Adapter LanguageAdapter;
 
@@ -90,7 +91,7 @@ public class LanguagesFragment  extends Fragment {
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Languages.add(new Language(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
+                Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 public class TrendsFragment extends Fragment {
     private FragmentTrendsBinding binding;
+    HttpHandler sh = new HttpHandler();
     ArrayList<Trend> Trends = new ArrayList<Trend>();
     private static String  url =  "http://q90932z7.beget.tech/server.php?action=select_trends";
     RecyclerView.Adapter TrendAdapter;
@@ -74,7 +75,9 @@ public class TrendsFragment extends Fragment {
 
 
     private void setInitialData(){
+
         SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
         String jsonRes = mSettings.getString(TRENDS,"");
         try {
             JSONObject json = new JSONObject("{\"trends\": " + jsonRes + " }");
@@ -86,7 +89,7 @@ public class TrendsFragment extends Fragment {
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Trends.add(new Trend(id, name, description, HttpHandler.openImage(img, this.getActivity()), img));
+                Trends.add(new Trend(id, name, description, sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();

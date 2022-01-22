@@ -64,7 +64,9 @@ public class LanguageActivity extends AppCompatActivity {
                 break;
         }
 
+       // ImageView Icon = findViewById(R.id.Img);
+        //Icon.setImageBitmap(HttpHandler.openImage(language.getIconPath(), this));
         ImageView Icon = findViewById(R.id.Img);
-        Icon.setImageBitmap(HttpHandler.openImage(language.getIconPath(), this));
+        Icon.setImageBitmap( sh.urlToBitmap(language.getIconPath()));
     }
 }
