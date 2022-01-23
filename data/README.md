@@ -13,24 +13,25 @@
 ### Формат файлов
 Все файлы должны иметь расширение `.html`, к сожалению. Свято верю, что потомки опомнятся и перейдут на формат `markdown`.
 
-_Примечание: поскольку формат `html` изначально не предполагался, у нас в папках имеется конечное (ага) число файлов `markdown`. Считайте это дополнением в коллекцию_
-
 #### Формат описания понятий
 
 Понятия из каждого раздела описываются в соответствии со следующим форматом:
 
 ```
-Description
+Description // 3rd level header
     ...
+    Analogue of <described type(bold)> in Russian: <1st>(bold), <2nd>(bold), ... // In case there're more than one similiar terms in Russian
 
 ...
-Arbitrary headers
+Arbitrary headers // 3rd level header
 ...
 
-See also
-    <cross-references to other materials>
+See also // 3rd level header
+    <1st>(bold), <2nd>(bold), ... // Cross-references to other application materials
 ```
 
+Upd. На мой взгляд, будет полезно добавлять аналогичные названия терминов на русском, которые уже устоялись в русской технической литературе.
+Машинный перевод данных терминов может сбить читателя с толку. Например `data race` обозначает `состояние гонки`, а не `гонка данных`.
 
 ### TODO-таблица
 
