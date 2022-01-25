@@ -1,0 +1,63 @@
+<p>Python is an interpreted high-level general-purpose programming language.  
+Its language constructs as well as its object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.</p>
+
+<p>Guido van Rossum began working on Python in the late 1980s, and first released it in 1991 as Python 0.9.0. Python 2.0 was released in 2000 and introduced new feature</p>
+
+<h2>Syntax</h2>
+<p>Python is meant to be an easily readable language. Its formatting is visually uncluttered, and it often uses English keywords where other languages use punctuation. Unlike many other languages, it does not use curly brackets to delimit blocks, and semicolons after statements are allowed but are rarely, if ever, used. It has fewer syntactic exceptions and special cases than for example C or Pascal.</p>
+
+<h3>Statements</h3>
+<p>Python\'s statements include (among others):</p>
+<ul>
+    <li>The assignment statement, using a single equals sign =.</li>
+    <li>The if statement, which conditionally executes a block of code, along with else and elif (a contraction of else-if).</li>
+    <li>The for statement, which iterates over an iterable object.</li>
+    <li>The while statement, which executes a block of code as long as its condition is true.</li>
+    <li>The class statement, which executes a block of code and attaches its local namespace to a class, for use in object-oriented programming.</li>
+    <li>The def statement, which defines a function or method.</li>
+    <li>The break statement, exits from a loop.</li>
+    <li>The continue statement, skips this iteration and continues with the next item.</li>
+    <li>The return statement, used to return a value from a function.</li>
+    <li>The import statement, which is used to import modules whose functions or variables can be used in the current program</li>
+</ul>
+<h3>Typing</h3>
+
+<p>Being dynamically-typed, Python is strongly-typed, forbidding operations that are not well-defined (for example, adding a number to a string) rather than silently attempting to make sense of them.</p>
+<p>Python allows programmers to define their own types using classes, which are most often used for object-oriented programming.</p>
+
+<b>Python built-in types:</b>
+<ul>
+    <li>bool</li>
+    <li>bytearray</li>
+    <li>bytes</li>
+    <li>complex (complex number with real and imaginary parts)</li>
+    <li>dict</li>
+    <li>float</li>
+    <li>frozenset</li>
+    <li>int</li>
+    <li>list</li>
+    <li>range</li>
+    <li>set</li>
+    <li>str (string)</li>
+    <li>tuple</li>
+</ul>
+
+<h3>Programming examples</h3>
+<p>Hello world program:</p>
+<code>
+print(\'Hello, world!\')
+</code>
+<p>Program to calculate the factorial of a positive integer:</p>
+<code>
+n = int(input(\'Type a number, and its factorial will be printed: \'))<br>
+
+if n < 0:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError(\'You must enter a non-negative integer\')<br>
+
+factorial = 1<br>
+for i in range(2, n + 1):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;factorial *= i<br>
+
+print(factorial)<br>
+</code>
+
