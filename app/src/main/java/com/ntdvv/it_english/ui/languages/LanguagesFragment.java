@@ -52,7 +52,7 @@ public class LanguagesFragment  extends Fragment {
                 Intent intent=new Intent(getContext(), LanguageActivity.class);
 
                 intent.putExtra("id", language.getId());
-                intent.putExtra("name", language.getName());
+                intent.putExtra("name", language.getTitle());
                 intent.putExtra("description", language.getDescription());
                 intent.putExtra("icon", language.getIconPath());
 
@@ -79,11 +79,11 @@ public class LanguagesFragment  extends Fragment {
             for (int i=0; i < arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
                 int id = obj.getInt("id");
-                String name = obj.getString("title");
+                String title = obj.getString("title");
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
+                Languages.add(new Language(id, title, description, sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();

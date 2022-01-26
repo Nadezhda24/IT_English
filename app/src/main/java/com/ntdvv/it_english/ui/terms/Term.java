@@ -11,8 +11,8 @@ public class Term extends ReferenceItem
         super();
     }
 
-    public Term(int id, String name, String description, Bitmap icon, String iconPath)
+    public Term(int id, String title, String description, Bitmap icon, String iconPath)
     {
-        super(id, name, description, icon, iconPath);
+        super(id, title, description, icon, iconPath);
     }
 }

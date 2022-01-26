@@ -42,7 +42,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     public void onBindViewHolder(LanguageAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Language language = languages.get(position);
 
-        holder.Name.setText(language.getName());
+        holder.Name.setText(language.getTitle());
         holder.Icon.setImageBitmap(language.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -43,7 +43,7 @@ public class ProfessionAdapter extends RecyclerView.Adapter<ProfessionAdapter.Vi
     public void onBindViewHolder(ProfessionAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Profession profession = professions.get(position);
 
-        holder.Name.setText(profession.getName());
+        holder.Name.setText(profession.getTitle());
         holder.Icon.setImageBitmap(profession.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

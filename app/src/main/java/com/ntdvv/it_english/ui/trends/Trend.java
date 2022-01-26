@@ -11,8 +11,8 @@ public class Trend extends ReferenceItem
         super();
     }
 
-    public Trend(int id, String name, String description, Bitmap icon, String iconPath)
+    public Trend(int id, String title, String description, Bitmap icon, String iconPath)
     {
-        super(id, name, description, icon, iconPath);
+        super(id, title, description, icon, iconPath);
     }
 }

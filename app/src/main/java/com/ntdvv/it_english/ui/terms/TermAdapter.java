@@ -43,7 +43,7 @@ public class TermAdapter  extends RecyclerView.Adapter<TermAdapter.ViewHolder>{
     public void onBindViewHolder(TermAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Term term = terms.get(position);
 
-        holder.Name.setText(term.getName());
+        holder.Name.setText(term.getTitle());
 
         holder.Icon.setImageBitmap(term.getIcon());
 

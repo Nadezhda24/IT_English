@@ -6,15 +6,15 @@ public class ReferenceItem
 {
     public ReferenceItem(){
         this.id = -1;
-        this.name = "";
+        this.title = "";
         this.description = "";
         this.icon = null;
         this.iconPath = "";
     }
 
-    public ReferenceItem(int id, String name, String description, Bitmap icon, String iconPath){
+    public ReferenceItem(int id, String title, String description, Bitmap icon, String iconPath){
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.icon = icon;
         this.iconPath = iconPath;
@@ -30,12 +30,12 @@ public class ReferenceItem
     }
 
 
-    public String getName(){
-        return this.name;
+    public String getTitle(){
+        return this.title;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setTitle(String title){
+        this.title = title;
     }
 
 
@@ -72,7 +72,7 @@ public class ReferenceItem
     /**
      * Текст заголовка записи
      */
-    private String name;
+    private String title;
     /**
      * Текста записи
      */
