@@ -79,7 +79,7 @@ public class LanguagesFragment  extends Fragment {
             for (int i=0; i < arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
                 int id = obj.getInt("id");
-                String name = obj.getString("name");
+                String name = obj.getString("title");
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
