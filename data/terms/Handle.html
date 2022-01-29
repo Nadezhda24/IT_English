@@ -1,0 +1,41 @@
+<h3>Definition</h3>
+<p>
+    In computer programming, a <b>handle</b> is an abstract reference to a resource 
+    that is used when application software references <b>blocks of memory</b> or 
+    <b>objects</b> that are managed by another system like a <b>database</b> or 
+    an <b>operating system</b>.
+</p>
+
+<p>
+    Analogue of <b>handle</b> in Russian: <b>дескриптор</b></p>
+</p>
+
+<h3>What is a handle internally?</h3>
+<p>
+    In many systems <b>handles</b> are just <b>integers</b>. They have no meaning outside of the system
+    that created it. Hence only a parent-system knows what each <b>handle</b> points to.
+</p>
+
+<h3>Where can you face with handles?</h3>
+
+<p>
+    At the time of writing this article the most popular and widespread operating system is <i>Windows</i>.
+    Windows has it's own <b>API(Application programming interface</b> - the set of functions that can be used by programmers
+    in building their <i>Windows-programs</i>.
+</p>
+<p>
+    For instance, when a programmer create a window (rectangle area of screen that can receive
+    user input and can output graphic information) using Windows API he invokes a functions
+    <b>CreateWindow</b>. That function returns a <b>handle</b> to a Window - a specific reference
+    to a particular resource in <b>operating system</b>, in this case - a reference to created window.
+</p>
+<p>
+    Let's investigate another example. Imagine that you develop a network application for Linux - 
+    your own <i>Telegram</i>. To make a connection between host and a client of your service you have to use
+    <b>sockets</b> - it's an abstraction of a data-transfer connection between two programs. Insofar as a <b>socket</b>
+    is a resource of the <b>operating system</b> we can refer a particular <b>socket</b> using it's <b>handle</b>
+</p>
+
+
+<h3>See also</h3>
+Operating system, API, Socket, Pointer
