@@ -17,18 +17,22 @@
 
 Понятия из каждого раздела описываются в соответствии со следующим форматом:
 
+Все заголовки должны быть заключены в тег <h3></h3>.
 ```
-Description // 3rd level header
+*Description*
+    `your description of particular term here`
     ...
-    Analogue of <described type(bold)> in Russian: <1st>(bold), <2nd>(bold), ... // In case there're more than one similiar terms in Russian
+    Analogue of `described type` in Russian: *<1st>*, *<2nd>*, ... *<n'th>* // In case there're more than one similiar terms in Russian
 
 ...
-Arbitrary headers // 3rd level header
+*Arbitrary headers*
 ...
 
-See also // 3rd level header
-    <1st>(bold), <2nd>(bold), ... // Cross-references to other application materials
+See also 
+*<1st>*, *<2nd>*, ... *<n'th>* // Cross-references to other application materials
 ```
+
+Также вы можете скопировать текст шаблона из данного [файла](template.html)
 
 Upd. На мой взгляд, будет полезно добавлять аналогичные названия терминов на русском, которые уже устоялись в русской технической литературе.
 Машинный перевод данных терминов может сбить читателя с толку. Например `data race` обозначает `состояние гонки`, а не `гонка данных`.
