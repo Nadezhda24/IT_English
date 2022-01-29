@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -34,6 +37,22 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     ProgressDialog dialog;
+
+    /**
+     * Проверяеn наличие подключения к сети
+     * Возвращает true, если устройство подключенок сети. В противном случае - false.
+     */
+    private boolean hasNetworkConnection()
+    {
+        String cs = Context.CONNECTIVITY_SERVICE;
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+
+        if(cm.getActiveNetworkInfo() == null)
+        {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
+            // Если у пользователя нет подключения к сети, даже не пытаемся обновлять данные, иначе
+            // приложение упадёт
+            if(!hasNetworkConnection())
+            {
+                Toast.makeText(this, getResources().getString(R.string.NoInternetConnectionToast), Toast.LENGTH_LONG).
+                        show();
+                return super.onOptionsItemSelected(item);
+            }
+
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.apply();
