@@ -43,7 +43,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Trend trend = trends.get(position);
 
-        holder.Name.setText(trend.getName());
+        holder.Name.setText(trend.getTitle());
         holder.Icon.setImageBitmap(trend.getIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

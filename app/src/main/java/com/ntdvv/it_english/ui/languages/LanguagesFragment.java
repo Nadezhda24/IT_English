@@ -2,14 +2,10 @@ package com.ntdvv.it_english.ui.languages;
 
 import static com.ntdvv.it_english.MainActivity.APP_PREFERENCES;
 import static com.ntdvv.it_english.MainActivity.LANGUAGE;
-import static com.ntdvv.it_english.MainActivity.TERMS;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -22,15 +18,11 @@ import android.view.ViewGroup;
 import com.ntdvv.it_english.HttpHandler;
 import com.ntdvv.it_english.R;
 import com.ntdvv.it_english.databinding.FragmentLanguagesBinding;
-import com.ntdvv.it_english.ui.terms.Term;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 public class LanguagesFragment  extends Fragment {
@@ -60,7 +52,7 @@ public class LanguagesFragment  extends Fragment {
                 Intent intent=new Intent(getContext(), LanguageActivity.class);
 
                 intent.putExtra("id", language.getId());
-                intent.putExtra("name", language.getName());
+                intent.putExtra("name", language.getTitle());
                 intent.putExtra("description", language.getDescription());
                 intent.putExtra("icon", language.getIconPath());
 
@@ -87,11 +79,11 @@ public class LanguagesFragment  extends Fragment {
             for (int i=0; i < arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
                 int id = obj.getInt("id");
-                String name = obj.getString("title");
+                String title = obj.getString("title");
                 String description = obj.getString("description");
                 String img = obj.getString("img");
 
-                Languages.add(new Language(id, name, description, sh.urlToBitmap(img), img));
+                Languages.add(new Language(id, title, description, sh.urlToBitmap(img), img));
             }
         } catch (JSONException e) {
             e.printStackTrace();
