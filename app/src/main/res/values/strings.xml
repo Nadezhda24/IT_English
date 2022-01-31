@@ -16,30 +16,32 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name="NoInternetConnectionToast">Check your internet connection to refresh the reference</string>
+    <string name="noInternetConnectionToast">Check your internet connection to refresh the reference</string>
 
-    <!-- Вынес html-шаблоны текста в файлы ресрусов: светлая и тёмные темы соответственно-->
+    <!-- Вынес html-шаблоны текста в файлы ресурсов: светлая и тёмные темы соответственно-->
     <!-- Вместо %s вставляется текст карточки-->
     <!-- <![CDATA[]] нужен для того, чтобы при использовании строкового ресурса в коде программы он
-    интерпретировался как корректный код html-->
+    интерпретировался как корректный код html
+    P.S. Здесь также нужно экранировать апострофы, иначе файл ресурсов не компилируется :)
+    -->
 
-    <string name="ReferenceItemModeNightNoTemplate">
+    <string name="referenceItemModeNightNoHtmlTemplate">
     <![CDATA[<html>
         <head>
             <style>p { text-indent: 25px; }</style>
         </head>
-        <body style="text-align: justify;">
+        <body style=\'text-align: justify;\'>
             %s
         </body>
     </html>]]>
     </string>
 
-    <string name="ReferenceItemModeNightYesTemplate">
+    <string name="referenceItemModeNightYesHtmlTemplate">
     <![CDATA[<html>
         <head>
             <style>p { text-indent: 25px; }</style>
         </head>
-        <body style="text-align: justify;">
+        <body style=\'text-align: justify;\'>
             <font color="white"/>
             %s
         </body>

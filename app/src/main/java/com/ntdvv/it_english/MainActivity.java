@@ -5,13 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.navigation.NavController;
@@ -20,7 +18,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.ntdvv.it_english.databinding.ActivityMainBinding;
-import com.ntdvv.it_english.ui.terms.Term;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             // приложение упадёт
             if(!hasNetworkConnection())
             {
-                Toast.makeText(this, getResources().getString(R.string.NoInternetConnectionToast), Toast.LENGTH_LONG).
+                Toast.makeText(this, getResources().getString(R.string.noInternetConnectionToast), Toast.LENGTH_LONG).
                         show();
                 return super.onOptionsItemSelected(item);
             }

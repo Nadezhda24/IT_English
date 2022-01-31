@@ -36,7 +36,7 @@ public class ReferenceActivity extends AppCompatActivity
             {
                 // Нyжно, иначе фон текста более белый, чем основной фон
                 description.setBackgroundColor(Color.TRANSPARENT);
-                String referenceItemText = String.format(getResources().getString(R.string.ReferenceItemModeNightNoTemplate), referenceItem.getDescription());
+                String referenceItemText = String.format(getResources().getString(R.string.referenceItemModeNightNoHtmlTemplate), referenceItem.getDescription());
                 description.loadData(referenceItemText, "text/html", "UTF-8");
                 break;
             }
@@ -44,7 +44,7 @@ public class ReferenceActivity extends AppCompatActivity
             case Configuration.UI_MODE_NIGHT_YES:
             {
                 description.setBackgroundColor(Color.TRANSPARENT);
-                String referenceItemText = String.format(getResources().getString(R.string.ReferenceItemModeNightYesTemplate), referenceItem.getDescription());
+                String referenceItemText = String.format(getResources().getString(R.string.referenceItemModeNightYesHtmlTemplate), referenceItem.getDescription());
                 description.loadData(referenceItemText, "text/html", "UTF-8");
                 break;
             }
