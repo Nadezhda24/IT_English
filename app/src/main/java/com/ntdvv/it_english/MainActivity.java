@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TRENDS = "TRENDS";
 
     SharedPreferences preferences;
-    ProgressDialog dialog;
+
 
     /**
      * Проверяеn наличие подключения к сети
@@ -65,15 +65,18 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController((Activity) this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController((AppCompatActivity) this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
         try {
-            if (preferences.getString(TRENDS, "") == "") {
-                dialog = ProgressDialog.show(this, "",
-                        "Loading. Please wait...", true);
+            if (preferences.getString(TRENDS, "") == "" && hasNetworkConnection()) {
+                ProgressDialog dialog = ProgressDialog.show(this, "",
+                        getResources().getString(R.string.loadingLatestArticlesMessage), true);
                 new GetData().execute(this);
             }
         } catch (Exception e) { //TODO: сделать нормальное решение для catch
 
+
         }
+
     }
 
     @Override
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 

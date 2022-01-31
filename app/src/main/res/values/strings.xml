@@ -17,6 +17,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="noInternetConnectionToast">Check your internet connection to refresh the reference</string>
+    <string name="internetConnectionLostMessage">We lost network access while downloading data</string>
+
+    <string name="loadingLatestArticlesMessage">Loading tha latest articles. Please wait for a while</string>
 
     <!-- Вынес html-шаблоны текста в файлы ресурсов: светлая и тёмные темы соответственно-->
     <!-- Вместо %s вставляется текст карточки-->
