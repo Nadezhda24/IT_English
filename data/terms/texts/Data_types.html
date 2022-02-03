@@ -1,0 +1,67 @@
+<h3>Definition</h3>
+<p>
+    In computer science and computer programming, a <b>data type</b> or simply <b>type</b>
+    is an attribute of data which tells the <b>compiler</b> or <b>interpreter</b> how the 
+    programmer intends to use the data.
+</p>
+
+<p>
+    As you may know memory can contain only binary representations of data. So it's hard to work
+    with such raw data. Thus <b>computer scientists</b> has invented <b>data types</b> 
+    to simplify programs development. Now developers are intended to use data of a particular type
+    instead of a <b>raw memory blobs</b> without any meaning. 
+    Only its creator bringing means to it: wheter it a number, image, driver, library, part of a game data, etc.
+</p>
+
+<p>
+    Analogue of <b>data type</b> in Russian: <b>тип данных</b>.
+</p>
+
+<h3>Common data types</h3>
+<p>
+    In programming languages the most common data types are:
+</p>
+
+<h4>Numbers</h4>
+<ul>
+    <li>
+    Integer - represents the signed <i>32 bit</i> number without fractional part.
+    For the sake of brevity in programming languages are used it's shortened forms:
+    <i>int</i>, <i>i32</i>. Variables of <b>integer</b> type can deal with numbers from 
+    [-2^32..2^32-1] range. <i>P.S. this range includes zero so we need to subtract one from the rightest border of
+        the range.</i>
+    </li>
+    Short - a shortened version of an <b>integer</b> type. It consist of only <i>16 bits</i>. 
+    Variables of <b>short</b> type can deal with numbers from [-2^16..2^16-1]  range.
+    <li>
+    Long - opposite to a previous type - longed version of <b>integer type</b>. It consist of <i>64 bits</i> and 
+    can handle numbers in a range [-2^64..2^64-1].
+    </li>
+</ul>
+<p>
+    It worth noting that in some programming languages there're <b>unsiged number types</b>. It means that variables
+    can't hold negative values and can only work in ranges [0..2^16], [0..2^32], [0..2^64] for types <i>unsigend short</i>,
+    <i>unsigned int</i> and <i>unsigned long</i> respectively.
+</p>
+<h4>Floating-point numbers</h4>
+<ul>
+    <li>Float - <i>32 bit</i> number with a floating point</li>
+    <li>Double - <i>64 bit</i> number with a floating point</li>
+</ul>
+<h4>Characters and character sequences</h4>
+<ul>
+    <li>Char. In old programming languages such as <b>C</b> and <b>C++</b> variable <b>char</b> type
+    can hold one symbol from a <b>ASCII</b> table (american code page that contains all latin-alphabet symbols, digits,
+    and some other symbols on your keyboard). In modern languages, for instance in <b>Rust</b> <b>chars</b> can store
+    symbol of <b>UTF-8</b> code page (international code page that can hold symbols of every language on Earth)</li>
+    <li>String - a dynamic sequence of <b>char</b> elements.</li>
+</ul>
+<h4>Logic types</h4>
+<p>
+    Logic type is single and presented by <b>boolean</b> type (in languages simply <b>bool</b>). Usually it takes
+    <i>1 byte</i> though it requeres only <i>1 bit</i> because <b>boolean</b> variables can hold 
+    only two possible values: <i>true</i> and <i>false</i>.
+</p>
+
+<h3>See also</h3>
+Compiler, Interpretator, Variable, ASCII, UTF-8
