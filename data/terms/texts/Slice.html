@@ -1,0 +1,44 @@
+<h3>Definition</h3>
+<p>
+    Generally, <b>slicing</b> is an operation that extracts a subset of elements 
+    from a <i>sequence</i>.
+</p>
+
+<p>
+    Analogue of <b>slice</b> in Russian: <b>срез</b>, <b>отрезок</b>.
+</p>
+
+
+<h3>Definition pitfalls</h3>
+<p>
+    The difficult is some <b>programming languages</b> defines <b>slice</b> in their own
+    way. For instance, in <b>Rust programming language</b> <b>slice</b> is defined as a
+    <b>reference</b> to a contiguous sequence of elements of a collection, i.e. here you
+    can define a reference to a part of sequence rather than to a whole sequence.
+</p>
+
+<p>
+    Whereas in <b>Python programming language</b> <b>slice</b> lets you to construct a 
+    new <b>sequence</b> from the part of an existing one.
+</p>
+
+<h3>Syntax of slices in different languages</h3>
+<p>
+    In <b>Rust</b> you can create a <b>slice</b> in following way: 
+    <i>&s[0..5]</i>, assuming that <b>s</b> is a string. This sentence takes 5 symbols -
+    from 0th up to 4th positions.
+</p>
+<p>
+    In <b>Python</b> you create references by typing <b>s[0:4]</b>, assuming that <b>s</b>
+    is a sequence (list, tuple, string). This sentence takes 4 symbols from - 0 up to 3rd.
+</p>
+
+<h3>What languages let you to use slices?</h3>
+<p>
+    <b>Slice</b> should be considered as a <b>complex</b> construction. Not every programming
+    language provides ability to get slices. For instance, <b>Rust</b> and <b>Python</b> - relatively
+    new programming languages do, and such languages as <b>C</b> don's.
+</p>
+
+<h3>See also</h3>
+List, Tuple, String, Rust, Python
