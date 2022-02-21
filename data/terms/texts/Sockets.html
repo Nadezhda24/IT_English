@@ -1,0 +1,42 @@
+<h3>Definition</h3>
+<p>
+    Socket - a program interface for sending and recieving data between two computers through the network.
+</p>
+
+<p>
+    Analogue of <b>Network socket</b> in Russian: <b>Сокет</b>.
+</p>
+
+<h3>Server and client sockets</h3>
+<p>
+    There are 2 types of sockets:
+    <ul>
+        <li>
+            Server sockets - a type of socket that waits for requests to come in over the network.
+            When server socket gets a connection, it provide an instance of client socket that 
+            bound with <i>remote endpoint (IP-address and port of connected client)</i>.
+            After that, server can use this connection for its intended purpose.
+        </li>
+        <li>
+            Client sockets - a type of socket that start a connection between client and server.
+            Client socket use a ip-address and port of the remote host to establish a connection.
+            After it has been done, programmer can use this interface to proceed data through it and waiting for the answer.
+        </li>
+    </ul>
+</p>
+<h3>Connection protocols</h3>
+<p>
+    There are two most common protocols of transmitting information through the network - UDP and TCP.<br>
+
+    Sockets using UDP called <i>connectionless sockets</i> or <i>datagramm sockets</i> (because UDP - <b>U</b>ser <b>D</b>atagramm <b>P</b>rotocol).
+    Datagramm sockets can't guarantee safety of transmitting information but they are very fast.<br>
+
+    Sockets using TCP calles <i>connection-oriented sockets</i> or <i>stream sockets</i>.
+    Stream sockets monitor the safety of transmitting information but it leads to an increase of network traffic. Also, TCP socket is slower than UDP one.
+
+</p>
+
+<h3>See also</h3>
+<p>
+    Data structure, C(this language can provide to you a native sockets without any shell), 
+</p>
