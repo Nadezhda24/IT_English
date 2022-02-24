@@ -1,0 +1,52 @@
+<h3>Definition</h3>
+<p>
+    A pointer is a variable that stores a memory address.
+</p>
+
+<p>
+    Analogue of <b>pointer</b> in Russian: <b>указатель</b>.
+</p>
+
+<h3>Dynamic objects</h3>
+<p>
+    Usually pointers are used for storing an address of memory allocated for 
+    dynamic object(s) which are created on a <b>Heap</b>. It's hard to predict carefully
+    how much memory your program will consume, because this value depends on many other values
+    such as program working duration, amount of input data and so on.
+</p>
+<p>
+    As a result developers get an opportunity to allocate as much memory as needed. The problem
+    is this memory has to be cleared manually in some languages (C and C++). This makes using
+    <b>pointers</b> one of many advanced topics in programming.
+</p>
+
+<h3>Smart pointer</h3>
+<p>
+    Due to the previous difficulties developers invented so-called <b>smart pointers</b>.
+    This is an implementation of <b>RAII(Resource Acquisition Is Initialization)</b> programming
+    paradigm. As for pointers this principle means that pointer will be cleared 
+    by it's owner object automatically after going out of <b>scope</b>.
+</p>
+<p>
+    For instance, in C++ programming language smart pointer types are following:
+</p>
+<ul>
+    <li>Unique pointer (unique_ptr). Fully owns the memory it is given and can't share it with
+        other objects.
+    </li>
+    <li>Shared pointer (shared_ptr). Apparently allows sharing resources between other shared
+        pointers.
+    </li>
+    <li>Weak pointer (weak_ptr)</li>
+</ul>
+
+<h3>Pointers in modern programming languages</h3>
+<p>
+    By virtue of complexity of using pointers in many modern programming languages
+    developer have no possibility to use it. For example in Python there aren't any pointers
+    in their pure meaning. Variables are already pointers and these terms are merged for 
+    simplifying.
+</p>
+
+<h3>See also</h3>
+Variable, Reference, Heap data, RAII, Object, Scope
