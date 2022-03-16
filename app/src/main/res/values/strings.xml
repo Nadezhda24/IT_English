@@ -42,10 +42,12 @@
     <string name="referenceItemModeNightYesHtmlTemplate">
     <![CDATA[<html>
         <head>
-            <style>p { text-indent: 25px; }</style>
+            <style>p {
+            text-indent: 25px;
+
+            }</style>
         </head>
-        <body style=\'text-align: justify;\'>
-            <font color="white"/>
+        <body style=\'text-align: justify; color : white;\'>
             %s
         </body>
     </html>]]>
