@@ -9,8 +9,8 @@ android {
         applicationId "com.ntdvv.it_english"
         minSdk 21
         targetSdk 30
-        versionCode 6
-        versionName "1.5"
+        versionCode 7
+        versionName "1.6"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
